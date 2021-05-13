@@ -12,17 +12,17 @@ export class StatusBar {
   }
 
   static init() {
-    StatusBar.watching();
-    setTimeout(function () {
-      StatusBar.notWatching();
+    StatusBar.decoding();
+    setTimeout(() => {
+      StatusBar.notDecoding();
     }, 1000);
   }
 
-  static watching() {
-    StatusBar.statusBarItem.text = 'Watching...';
+  static decoding() {
+    StatusBar.statusBarItem.text = 'Decoding...';
   }
 
-  static notWatching() {
-    StatusBar.statusBarItem.text = 'Watch ISO-2022-JP';
+  static notDecoding() {
+    StatusBar.statusBarItem.text = 'Decode ISO-2022-JP';
   }
 }
