@@ -10,14 +10,14 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:converttoiso-2022-jp.helloWorld"
+
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "converttoiso-2022-jp.helloWorld",
-				"title": "Hello World"
+				"command": "decodeISO2022JP.command",
+				"title": "Decode ISO-2022-JP"
 			}
 		]
 	},
