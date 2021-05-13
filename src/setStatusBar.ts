@@ -13,6 +13,7 @@ export class StatusBar {
   }
 
   static init() {
+    this.statusBarItem.command = 'decodeISO2022JP.command';
     StatusBar.decoding();
     setTimeout(() => {
       StatusBar.notDecoding();
@@ -21,7 +22,6 @@ export class StatusBar {
 
   static decoding() {
     StatusBar.statusBarItem.text = 'Decoding...';
-    this.statusBarItem.command = 'decodeISO2022JP.command';
   }
 
   static notDecoding() {
