@@ -2,15 +2,31 @@
 	"name": "converttoiso-2022-jp",
 	"displayName": "ConvertToISO-2022-JP",
 	"description": "",
+	"publisher": "Kazuki",
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.46.0"
 	},
 	"categories": [
+		"Formatters",
+		"Snippets",
+		"Linters",
 		"Other"
 	],
-	"activationEvents": [],
-	"main": "./dist/extension.js",
+	"keywords": [
+		"UTF8",
+		"UTF-8",
+		"ISO-2022-JP",
+		"ISO2022JP",
+		"JIS",
+		"character encoding",
+		"encoding",
+		"encode"
+	],
+	"activationEvents": [
+		"onCommand:encodeISO2022JP.command"
+	],
+	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
@@ -20,15 +36,11 @@
 		]
 	},
 	"scripts": {
-		"vscode:prepublish": "npm run package",
-		"compile": "webpack --config ./build/node-extension.webpack.config.js",
-		"watch": "webpack --watch --config ./build/node-extension.webpack.config.js",
-		"package": "webpack --mode production --devtool hidden-source-map --config ./build/node-extension.webpack.config.js",
-		"test-compile": "tsc -p ./",
-		"test-watch": "tsc -watch -p ./",
-		"pretest": "npm run test-compile && npm run lint",
-		"lint": "eslint src --ext ts",
-		"test": "node ./out/test/runTest.js"
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile && npm run lint",
+		"lint": "eslint src --ext ts"
 	},
 	"devDependencies": {
 		"@types/vscode": "^1.46.0",

@@ -33,7 +33,8 @@ export class Model {
   }
 
   get charCode() {
-    const charCode = encoding.detect(Model.docArray);
+    assertIsDefined(Model.fileDoc);
+    const charCode = encoding.detect(Model.fileDoc);
     return charCode;
   }
 
