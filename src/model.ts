@@ -5,12 +5,12 @@ import { StatusBar } from './setStatusBar';
 import { TextEncoder } from 'util';
 
 export class Model {
-  isWatching: boolean;
+  isEncoding: boolean;
   isIso2022JP: boolean;
   static editor: vscode.TextEditor | undefined;
 
   constructor() {
-    this.isWatching = false;
+    this.isEncoding = false;
     this.isIso2022JP = false;
     Model.editor = vscode.window.activeTextEditor;
     StatusBar.init();
@@ -27,13 +27,14 @@ export class Model {
 
   private static get docArray() {
     assertIsDefined(Model.fileDoc);
+    const docUtf8 = encoding.convert(Model.fileDoc, 'UTF8');
     const encoder = new TextEncoder();
-    return encoder.encode(Model.fileDoc);
+    return encoder.encode(docUtf8);
   }
 
-  get cahrCode() {
-    const cahrCode = encoding.detect(Model.docArray);
-    return cahrCode;
+  get charCode() {
+    const charCode = encoding.detect(Model.docArray);
+    return charCode;
   }
 
   encodeFile() {

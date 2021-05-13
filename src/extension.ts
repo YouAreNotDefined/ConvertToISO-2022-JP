@@ -4,14 +4,17 @@ import { Model } from './model';
 
 export function activate(context: vscode.ExtensionContext) {
 	const model = new Model();
+	const charCodes = ['UTF16', 'UTF16BE', 'UTF16LE', 'UTF8', 'EUCJP', 'SJIS'];
 
 	let disposable = vscode.commands.registerCommand('encodeISO2022JP.command', () => {
 		vscode.window.showInformationMessage('ConvertToISO-2022-JP!');
 
-		if (model.cahrCode === 'UTF8') {
+		const isAvailable = charCodes.some(charCode => model.charCode === charCode);
+
+		if (isAvailable) {
 			model.encodeFile();
 		} else {
-			vscode.window.showInformationMessage('Not UTF-8');
+			vscode.window.showInformationMessage('This character encoding is not available');
 			return;
 		}
 	});
