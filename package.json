@@ -14,8 +14,8 @@
 	"contributes": {
 		"commands": [
 			{
-				"command": "decodeISO2022JP.command",
-				"title": "Decode ISO-2022-JP"
+				"command": "encodeISO2022JP.command",
+				"title": "Encode ISO-2022-JP"
 			}
 		]
 	},

@@ -6,26 +6,26 @@ export class StatusBar {
   private static get statusBarItem() {
     if (!StatusBar._statusBarItem) {
       StatusBar._statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 200);
-      this.statusBarItem.show();
       this.statusBarItem.color = '#ffffff';
+      this.statusBarItem.show();
     }
     return StatusBar._statusBarItem;
   }
 
   static init() {
-    this.statusBarItem.command = 'decodeISO2022JP.command';
-    StatusBar.decoding();
+    this.statusBarItem.command = 'encodeISO2022JP.command';
+    StatusBar.encoding();
     setTimeout(() => {
-      StatusBar.notDecoding();
+      StatusBar.notEncoding();
     }, 1000);
   }
 
-  static decoding() {
-    StatusBar.statusBarItem.text = 'Decoding...';
+  static encoding() {
+    StatusBar.statusBarItem.text = 'Encoding...';
   }
 
-  static notDecoding() {
-    StatusBar.statusBarItem.text = 'Decode ISO-2022-JP';
+  static notEncoding() {
+    StatusBar.statusBarItem.text = 'Encode ISO-2022-JP';
   }
 
   static dispose() {

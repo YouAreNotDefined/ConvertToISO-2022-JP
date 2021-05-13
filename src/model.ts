@@ -7,24 +7,22 @@ import { TextEncoder } from 'util';
 export class Model {
   isWatching: boolean;
   isIso2022JP: boolean;
-  isUtf8: boolean;
+  static editor: vscode.TextEditor | undefined;
 
   constructor() {
     this.isWatching = false;
     this.isIso2022JP = false;
-    this.isUtf8 = false;
+    Model.editor = vscode.window.activeTextEditor;
     StatusBar.init();
   }
 
   private static get fileDoc() {
-    const editor = vscode.window.activeTextEditor;
-
-    if (typeof editor === undefined) {
+    if (typeof Model.editor === undefined) {
       vscode.window.showInformationMessage('No active window!');
       return;
     }
 
-    return editor?.document.getText();
+    return Model.editor?.document.getText();
   }
 
   private static get docArray() {
@@ -38,10 +36,23 @@ export class Model {
     return cahrCode;
   }
 
-  decodeFile() {
-    StatusBar.decoding();
-    const text = encoding.convert(Model.docArray, 'JIS');
-    StatusBar.notDecoding();
+  encodeFile() {
+    assertIsDefined(Model.fileDoc);
+    assertIsDefined(Model.editor);
+    StatusBar.encoding();
+
+    const text = encoding.convert(Model.fileDoc, 'JIS');
+
+    StatusBar.notEncoding();
+
+    const startPos = new vscode.Position(0, 0);
+    const endPos = new vscode.Position(Model.editor?.document.lineCount - 1, 10000);
+    const curSelection = new vscode.Selection(startPos, endPos);
+    const callback = function (editBuilder: vscode.TextEditorEdit): void {
+      editBuilder.replace(curSelection,text);
+    }
+
+    Model.editor.edit(callback);
   }
 }
 
