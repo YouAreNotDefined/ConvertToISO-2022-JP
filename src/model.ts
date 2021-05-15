@@ -1,5 +1,7 @@
 import * as vscode from 'vscode';
 import * as encoding from "encoding-japanese";
+import * as Jschardet from "jschardet";
+import * as Iconv from "iconv";
 
 import { StatusBar } from './setStatusBar';
 import { TextEncoder } from 'util';
@@ -8,6 +10,7 @@ export class Model {
   isEncoding: boolean;
   isIso2022JP: boolean;
   static editor: vscode.TextEditor | undefined;
+
 
   constructor() {
     this.isEncoding = false;
@@ -34,8 +37,10 @@ export class Model {
 
   get charCode() {
     assertIsDefined(Model.fileDoc);
-    const charCode = encoding.detect(Model.fileDoc);
-    return charCode;
+    // const charCode = encoding.detect(Model.fileDoc);
+    const charCode = Jschardet.detect(Model.fileDoc);
+    // return charCode;
+    return charCode.encoding;
   }
 
   encodeFile() {
@@ -43,7 +48,9 @@ export class Model {
     assertIsDefined(Model.editor);
     StatusBar.encoding();
 
-    const text = encoding.convert(Model.fileDoc, 'JIS');
+    // const text = encoding.convert(Model.fileDoc, 'JIS');
+    const iconv = new Iconv(this.charCode, 'ISO-2022-JP');
+    const text = iconv.convert(Model.fileDoc).toString();
 
     StatusBar.notEncoding();
 

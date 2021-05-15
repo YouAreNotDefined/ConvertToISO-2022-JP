@@ -60,6 +60,9 @@
 	},
 	"dependencies": {
 		"@types/encoding-japanese": "^1.0.17",
-		"encoding-japanese": "^1.0.30"
+		"@types/iconv": "^2.1.16",
+		"encoding-japanese": "^1.0.30",
+		"iconv": "^3.0.0",
+		"jschardet": "^3.0.0"
 	}
 }
