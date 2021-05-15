@@ -1,10 +1,11 @@
 import * as vscode from 'vscode';
 import * as encoding from "encoding-japanese";
 import * as Jschardet from "jschardet";
-import * as Iconv from "iconv";
+// import * as Iconv from "iconv";
+import * as Iconv from "iconv-lite";
 
-import { StatusBar } from './setStatusBar';
-import { TextEncoder } from 'util';
+// import { StatusBar } from './setStatusBar';
+// import { TextEncoder } from 'util';
 
 export class Model {
   isEncoding: boolean;
@@ -12,11 +13,11 @@ export class Model {
   static editor: vscode.TextEditor | undefined;
 
 
-  constructor() {
+  constructor(editor: vscode.TextEditor | undefined) {
     this.isEncoding = false;
     this.isIso2022JP = false;
-    Model.editor = vscode.window.activeTextEditor;
-    StatusBar.init();
+    Model.editor = editor;
+    // StatusBar.init();
   }
 
   private static get fileDoc() {
@@ -28,11 +29,12 @@ export class Model {
     return Model.editor?.document.getText();
   }
 
-  private static get docArray() {
+  private static get convertToUTF8() {
     assertIsDefined(Model.fileDoc);
-    const docUtf8 = encoding.convert(Model.fileDoc, 'UTF8');
-    const encoder = new TextEncoder();
-    return encoder.encode(docUtf8);
+    const buf = new Buffer(Model.fileDoc, 'binary');
+    // const docUtf8 = encoding.convert(Model.fileDoc, 'UTF8');
+    const docUtf8 = Iconv.decode(buf, 'utf8');
+    return docUtf8;
   }
 
   get charCode() {
@@ -46,13 +48,18 @@ export class Model {
   encodeFile() {
     assertIsDefined(Model.fileDoc);
     assertIsDefined(Model.editor);
-    StatusBar.encoding();
+    // StatusBar.encoding();
 
-    // const text = encoding.convert(Model.fileDoc, 'JIS');
-    const iconv = new Iconv(this.charCode, 'ISO-2022-JP');
-    const text = iconv.convert(Model.fileDoc).toString();
-
-    StatusBar.notEncoding();
+    let text = '';
+    if (this.charCode === 'UTF-8') {
+      text = encoding.convert(Model.fileDoc, 'JIS');
+    } else {
+      text = encoding.convert(Model.convertToUTF8, 'JIS');
+    }
+    // const iconv = new Iconv(this.charCode, 'ISO-2022-JP');
+    // const text = iconv.convert(Model.fileDoc).toString();
+    vscode.window.showInformationMessage(text);
+    // StatusBar.notEncoding();
 
     const startPos = new vscode.Position(0, 0);
     const endPos = new vscode.Position(Model.editor?.document.lineCount - 1, 10000);
