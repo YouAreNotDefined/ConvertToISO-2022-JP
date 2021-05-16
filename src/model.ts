@@ -4,7 +4,6 @@ import * as Jschardet from "jschardet";
 // import * as Iconv from "iconv";
 import * as Iconv from "iconv-lite";
 
-// import { StatusBar } from './setStatusBar';
 // import { TextEncoder } from 'util';
 
 export class Model {
@@ -17,7 +16,6 @@ export class Model {
     this.isEncoding = false;
     this.isIso2022JP = false;
     Model.editor = editor;
-    // StatusBar.init();
   }
 
   private static get fileDoc() {
@@ -34,32 +32,44 @@ export class Model {
     const buf = new Buffer(Model.fileDoc, 'binary');
     // const docUtf8 = encoding.convert(Model.fileDoc, 'UTF8');
     const docUtf8 = Iconv.decode(buf, 'utf8');
+      vscode.window.showInformationMessage(`${buf}`);
     return docUtf8;
+  }
+
+  private static get unicodeArray() {
+    assertIsDefined(Model.fileDoc);
+    const unicodeArray: number[] = [];
+    for (let i = 0; i < Model.fileDoc.length; i++) {
+      unicodeArray.push(Model.fileDoc.charCodeAt(i));
+    }
+    return unicodeArray;
   }
 
   get charCode() {
     assertIsDefined(Model.fileDoc);
-    // const charCode = encoding.detect(Model.fileDoc);
     const charCode = Jschardet.detect(Model.fileDoc);
-    // return charCode;
     return charCode.encoding;
   }
 
   encodeFile() {
     assertIsDefined(Model.fileDoc);
     assertIsDefined(Model.editor);
-    // StatusBar.encoding();
 
     let text = '';
     if (this.charCode === 'UTF-8') {
-      text = encoding.convert(Model.fileDoc, 'JIS');
+      text = encoding.convert(Model.fileDoc, {
+        to: 'JIS',
+        from: 'UTF8',
+        type: 'string'
+      });
     } else {
-      text = encoding.convert(Model.convertToUTF8, 'JIS');
+      const JISArray = encoding.convert(Model.unicodeArray, {
+        to: 'UTF8',
+        from: 'UNICODE'
+      });
+      text = encoding.codeToString(JISArray);
     }
-    // const iconv = new Iconv(this.charCode, 'ISO-2022-JP');
-    // const text = iconv.convert(Model.fileDoc).toString();
-    vscode.window.showInformationMessage(text);
-    // StatusBar.notEncoding();
+    vscode.window.showInformationMessage(this.charCode);
 
     const startPos = new vscode.Position(0, 0);
     const endPos = new vscode.Position(Model.editor?.document.lineCount - 1, 10000);
