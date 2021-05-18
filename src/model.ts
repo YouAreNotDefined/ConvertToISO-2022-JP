@@ -1,20 +1,14 @@
 import * as vscode from 'vscode';
 import * as encoding from "encoding-japanese";
 import * as Jschardet from "jschardet";
-// import * as Iconv from "iconv";
 import * as Iconv from "iconv-lite";
 
 // import { TextEncoder } from 'util';
 
 export class Model {
-  isEncoding: boolean;
-  isIso2022JP: boolean;
-  static editor: vscode.TextEditor | undefined;
-
+  private static editor: vscode.TextEditor | undefined;
 
   constructor(editor: vscode.TextEditor | undefined) {
-    this.isEncoding = false;
-    this.isIso2022JP = false;
     Model.editor = editor;
   }
 
@@ -29,10 +23,8 @@ export class Model {
 
   private static get convertToUTF8() {
     assertIsDefined(Model.fileDoc);
-    const buf = new Buffer(Model.fileDoc, 'binary');
-    // const docUtf8 = encoding.convert(Model.fileDoc, 'UTF8');
-    const docUtf8 = Iconv.decode(buf, 'utf8');
-      vscode.window.showInformationMessage(`${buf}`);
+    const buf = Buffer.from(Model.fileDoc, 'binary');
+    const docUtf8 = Iconv.decode(buf, 'utf-8');
     return docUtf8;
   }
 
@@ -55,21 +47,12 @@ export class Model {
     assertIsDefined(Model.fileDoc);
     assertIsDefined(Model.editor);
 
-    let text = '';
-    if (this.charCode === 'UTF-8') {
-      text = encoding.convert(Model.fileDoc, {
-        to: 'JIS',
-        from: 'UTF8',
-        type: 'string'
-      });
-    } else {
-      const JISArray = encoding.convert(Model.unicodeArray, {
-        to: 'UTF8',
-        from: 'UNICODE'
-      });
-      text = encoding.codeToString(JISArray);
-    }
-    vscode.window.showInformationMessage(this.charCode);
+    const JISArray = encoding.convert(Model.unicodeArray, {
+      to: 'UTF8',
+      from: 'AUTO'
+    });
+    const text = encoding.codeToString(JISArray);
+    // vscode.window.showInformationMessage(Jschardet.detect(encoding.codeToString(JISArray)).encoding)
 
     const startPos = new vscode.Position(0, 0);
     const endPos = new vscode.Position(Model.editor?.document.lineCount - 1, 10000);

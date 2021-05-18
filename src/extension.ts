@@ -9,9 +9,13 @@ export function activate(context: vscode.ExtensionContext) {
 	let disposable = vscode.commands.registerCommand('encodeISO2022JP.command', () => {
 		const editor = vscode.window.activeTextEditor;
 		const model = new Model(editor);
-		StatusBar.encoding();
-		model.encodeFile();
-		StatusBar.notEncoding();
+		if (model.charCode === 'ISO-2022-JP') {
+			StatusBar.encoding();
+			model.encodeFile();
+			StatusBar.notEncoding();
+		} else {
+			vscode.window.showInformationMessage('Can only convert to ISO-2022-JP');
+		}
 	});
 
 	context.subscriptions.push(disposable);
