@@ -13,7 +13,7 @@ export function activate(context: vscode.ExtensionContext) {
 			return;
 		}
 		const model = new Model(editor);
-		if (model.charCode === 'ISO-2022-JP') {
+		if (model.charCode === 'JIS') {
 			StatusBar.encoding();
 			model.encodeFile();
 			StatusBar.notEncoding();
