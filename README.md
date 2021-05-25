@@ -7,13 +7,13 @@ This can convert ISO-2022-JP into UNICODE and then return to ISO-2022-JP.
 
 ## 使い方 Usage
 
-1.vscodeで対象のファイルを開いてください。
-2.コマンドパレットを開きます。（"Ctrl + Shift + P" or "⌘ + Shift + P"）
-3."Convert ISO-2022-JP"と検索し、クリックします。
+- vscodeで対象のファイルを開いてください。
+- コマンドパレットを開きます。（"Ctrl + Shift + P" or "⌘ + Shift + P"）
+- "Convert ISO-2022-JP"と検索し、クリックします。
 
-1. Open an file on your VScode window and activate it.
-2. Bring up the Command Palette (Press "Ctrl + Shift + P" or "⌘ + Shift + P").
-3. Search for the "Convert ISO-2022-JP" on Command Palette and click it.
+- Open an file on your VScode window and activate it.
+- Bring up the Command Palette (Press "Ctrl + Shift + P" or "⌘ + Shift + P").
+- Search for the "Convert ISO-2022-JP" on Command Palette and click it.
 
 ## ショートカット Shortcuts
 
