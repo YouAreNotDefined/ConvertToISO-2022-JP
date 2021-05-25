@@ -5,11 +5,13 @@
 A VSCode Extension that help you to convert ISO-2022-JP based on an active HTML file on your VScode window.
 This can convert ISO-2022-JP into UNICODE and then return to ISO-2022-JP.
 
-## 使い方 Usage
+## 使い方
 
 - vscodeで対象のファイルを開いてください。
 - コマンドパレットを開きます。（"Ctrl + Shift + P" or "⌘ + Shift + P"）
 - "Convert ISO-2022-JP"と検索し、クリックします。
+
+## Usage
 
 - Open an file on your VScode window and activate it.
 - Bring up the Command Palette (Press "Ctrl + Shift + P" or "⌘ + Shift + P").
