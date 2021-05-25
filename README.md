@@ -1,65 +1,26 @@
-# converttoiso-2022-jp README
+# ConvertToISO-2022-JP
 
-This is the README for your extension "converttoiso-2022-jp". After writing up a brief description, we recommend including the following sections.
+文字コードがISO-2022-JPのファイルをUNICODEに変換します。修正や確認後にISO-2022-JPに戻すことも可能です。
 
-## Features
+A VSCode Extension that help you to convert ISO-2022-JP based on an active HTML file on your VScode window.
+This can convert ISO-2022-JP into UNICODE and then return to ISO-2022-JP.
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+## 使い方 Usage
 
-For example if there is an image subfolder under your extension project workspace:
+1.vscodeで対象のファイルを開いてください。
+2.コマンドパレットを開きます。（"Ctrl + Shift + P" or "⌘ + Shift + P"）
+3."Convert ISO-2022-JP"と検索し、クリックします。
 
-\!\[feature X\]\(images/feature-x.png\)
+1. Open an file on your VScode window and activate it.
+2. Bring up the Command Palette (Press "Ctrl + Shift + P" or "⌘ + Shift + P").
+3. Search for the "Convert ISO-2022-JP" on Command Palette and click it.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+## ショートカット Shortcuts
 
-## Requirements
+右下のステータスバーの"Convert ISO-2022-JP"をクリックすることで変換することも可能です。
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+Click to Convert ISO-2022-JP into UNICODE or return to ISO-2022-JP from Statusbar to turn on.
+![shortcuts](https://user-images.githubusercontent.com/61075280/119502540-fe14e300-bda4-11eb-8200-c955241a7cde.PNG)
 
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+例 For example:
+![GIF_example](https://user-images.githubusercontent.com/61075280/119502339-cc9c1780-bda4-11eb-8722-a555aac1be74.gif)
