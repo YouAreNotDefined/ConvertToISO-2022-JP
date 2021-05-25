@@ -2,7 +2,7 @@
 	"name": "converttoiso-2022-jp",
 	"displayName": "ConvertToISO-2022-JP",
 	"description": "",
-	"publisher": "Kazuki",
+	"publisher": "kazuki",
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.46.0"
@@ -60,6 +60,7 @@
 	},
 	"dependencies": {
 		"@types/encoding-japanese": "^1.0.17",
-		"encoding-japanese": "^1.0.30"
+		"encoding-japanese": "^1.0.30",
+		"vsce": "^1.88.0"
 	}
 }
