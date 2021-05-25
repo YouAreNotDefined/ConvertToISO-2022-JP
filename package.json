@@ -4,6 +4,10 @@
 	"description": "",
 	"publisher": "kazuki",
 	"version": "0.0.1",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/YouAreNotDefined/ConvertToISO-2022-JP"
+	},
 	"engines": {
 		"vscode": "^1.46.0"
 	},
