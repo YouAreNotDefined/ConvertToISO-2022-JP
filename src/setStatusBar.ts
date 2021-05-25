@@ -13,7 +13,7 @@ export class StatusBar {
   }
 
   static init() {
-    this.statusBarItem.command = 'encodeISO2022JP.command';
+    this.statusBarItem.command = 'convertISO2022JP.command';
     StatusBar.encoding();
     setTimeout(() => {
       StatusBar.notEncoding();
@@ -21,11 +21,11 @@ export class StatusBar {
   }
 
   static encoding() {
-    StatusBar.statusBarItem.text = 'Encoding...';
+    StatusBar.statusBarItem.text = 'Converting...';
   }
 
   static notEncoding() {
-    StatusBar.statusBarItem.text = 'Encode ISO-2022-JP';
+    StatusBar.statusBarItem.text = 'Convert ISO-2022-JP';
   }
 
   static dispose() {

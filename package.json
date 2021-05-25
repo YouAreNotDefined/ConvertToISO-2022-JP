@@ -14,24 +14,24 @@
 		"Other"
 	],
 	"keywords": [
-		"UTF8",
-		"UTF-8",
 		"ISO-2022-JP",
 		"ISO2022JP",
 		"JIS",
 		"character encoding",
 		"encoding",
-		"encode"
+		"encode",
+		"decode",
+		"decoding"
 	],
 	"activationEvents": [
-		"onCommand:encodeISO2022JP.command"
+		"onCommand:convertISO2022JP.command"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "encodeISO2022JP.command",
-				"title": "Encode ISO-2022-JP"
+				"command": "convertISO2022JP.command",
+				"title": "Convert ISO-2022-JP"
 			}
 		]
 	},

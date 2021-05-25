@@ -1,39 +1,36 @@
 import * as vscode from 'vscode';
-import * as encoding from "encoding-japanese";
-import { readFileSync, writeFile } from "fs";
+import { convert, detect, codeToString, Encoding } from "encoding-japanese";
+import { readFileSync, writeFileSync } from "fs";
+
+import { StatusBar } from './setStatusBar';
 
 export class Model {
-  private static _uri: string;
-
-  constructor(editor: vscode.TextEditor) {
-    Model._uri = editor.document.uri.fsPath;
-  }
-
   private static get readFile() {
-    return readFileSync(`${Model._uri}`);
+    return readFileSync(this.fileUri!);
   }
 
-  private static get unicodeArray() {
-    const unicodeArray: number[] = [];
-    for (let i = 0; i < Model.readFile.toString().length; i++) {
-      unicodeArray.push(Model.readFile.toString().charCodeAt(i));
-    }
-    return unicodeArray;
+  private static get charCode() {
+    return detect(this.readFile).toString();
   }
 
-  get charCode() {
-    return encoding.detect(Model.readFile).toString();
+  private static get fileUri() {
+    return vscode.window.activeTextEditor?.document.uri.fsPath;
   }
 
-  encodeFile() {
-    const Utf8Array = encoding.convert(Model.readFile, {
-      to: 'UTF8',
+  static isAvailable(charCode: Encoding) {
+    return this.charCode === charCode ? true : false;
+  }
+
+  static convertFile(to: Encoding = 'UNICODE') {
+    if (!this.fileUri) return;
+    StatusBar.encoding();
+    const charArray = convert(this.readFile, {
+      to,
       from: 'AUTO'
     });
-    const text = encoding.codeToString(Utf8Array);
+    const text = codeToString(charArray);
 
-    writeFile(`${Model._uri}`, text, (err) => {
-      if (err) vscode.window.showInformationMessage(`${err}`);
-    })
+    writeFileSync(this.fileUri, text);
+    StatusBar.notEncoding();
   }
 }
