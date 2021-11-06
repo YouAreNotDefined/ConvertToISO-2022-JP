@@ -4,12 +4,12 @@ import { Model } from './model';
 import { StatusBar } from './setStatusBar';
 
 export function activate(context: vscode.ExtensionContext) {
-	StatusBar.init();
+  StatusBar.init();
 
-	let disposable = vscode.commands.registerCommand('convertISO2022JP.command', async () => {
+  let disposable = vscode.commands.registerCommand('convertISO2022JP.command', async () => {
     const editor = vscode.window.activeTextEditor;
 
-		if (!editor) return;
+    if (!editor) return;
 
     const model = new Model(editor);
 
@@ -21,12 +21,12 @@ export function activate(context: vscode.ExtensionContext) {
       return;
     }
 
-		if (model.isAvailable('JIS')) model.convertFile();
+    if (model.isAvailable('JIS')) model.convertFile();
     else if (model.isAvailable('UNICODE')) model.convertFile('JIS');
-		else vscode.window.showInformationMessage('This character code is disabled');
-	});
+    else vscode.window.showInformationMessage('This character code is disabled');
+  });
 
-	context.subscriptions.push(disposable);
+  context.subscriptions.push(disposable);
 }
 
 export function deactivate() { }
