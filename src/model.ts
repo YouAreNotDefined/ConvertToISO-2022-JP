@@ -70,7 +70,7 @@ export class Model {
 
   convertFile(to: Encoding = 'UNICODE') {
     StatusBar.encoding();
-    let result = convert(this.content, {
+    const result = convert(this.content, {
       to,
       from: 'AUTO'
     });

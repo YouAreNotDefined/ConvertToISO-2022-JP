@@ -38,16 +38,16 @@
 				"title": "Convert ISO-2022-JP"
 			}
 		],
-    "configuration": {
-      "title": "ConvertToISO-2022-JP configuration",
-      "properties": {
-        "ConvertToISO-2022-JP.saveSetting": {
-          "type": "boolean",
-          "default": true,
-          "description": "Whether to save the file as is when converting. The default is save."
-        }
-      }
-    }
+		"configuration": {
+			"title": "ConvertToISO-2022-JP configuration",
+			"properties": {
+				"ConvertToISO-2022-JP.saveSetting": {
+					"type": "boolean",
+					"default": true,
+					"description": "Whether to save the file as is when converting. The default is save."
+				}
+			}
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
