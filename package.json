@@ -3,7 +3,7 @@
 	"displayName": "ConvertToISO-2022-JP",
 	"description": "",
 	"publisher": "kazuki",
-	"version": "0.0.1",
+	"version": "0.0.3",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/YouAreNotDefined/ConvertToISO-2022-JP"
@@ -37,7 +37,17 @@
 				"command": "convertISO2022JP.command",
 				"title": "Convert ISO-2022-JP"
 			}
-		]
+		],
+    "configuration": {
+      "title": "ConvertToISO-2022-JP configuration",
+      "properties": {
+        "ConvertToISO-2022-JP.saveSetting": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to save the file as is when converting. The default is save."
+        }
+      }
+    }
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
