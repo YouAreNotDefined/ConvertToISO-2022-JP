@@ -1,9 +1,7 @@
 # Change Log
 
-All notable changes to the "converttoiso-2022-jp" extension will be documented in this file.
+All notable changes to the "ConvertToISO-2022-JP" extension will be documented in this file.
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+## 0.0.3
 
-## [Unreleased]
-
-- Initial release
+- Added a setting to determine whether to save the file as-is or only convert it without saving when converting character codes.

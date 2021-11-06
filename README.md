@@ -26,3 +26,13 @@ Click to Convert ISO-2022-JP into UNICODE or return to ISO-2022-JP from Statusba
 
 例 For example:
 ![GIF_example](https://user-images.githubusercontent.com/61075280/119502339-cc9c1780-bda4-11eb-8722-a555aac1be74.gif)
+
+## 設定 Configuration
+
+文字コード変換時にそのまま保存するか、もしくは保存せずに変換のみ行うかを設定可能です。
+デフォルトでは保存します。保存せずに変換のみ行いたい場合は以下のチェックを外して下さい。
+
+It is possible to set whether to save the file as-is when converting character codes, or whether to only convert the file without saving.
+The default is to save the file. If you only want to convert without saving, uncheck the following.
+
+![capture](https://user-images.githubusercontent.com/61075280/140607619-ce5accc6-4ffe-4905-b1a1-7122f2d348e4.PNG)
