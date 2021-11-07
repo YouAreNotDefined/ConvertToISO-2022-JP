@@ -75,6 +75,6 @@
 	"dependencies": {
 		"@types/encoding-japanese": "^1.0.17",
 		"encoding-japanese": "^1.0.30",
-		"vsce": "^1.88.0"
+		"vsce": "^1.103.1"
 	}
 }
